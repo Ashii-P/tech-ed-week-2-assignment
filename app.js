@@ -227,16 +227,16 @@ leftButton.addEventListener("click", function () {
   currentImage = (currentImage - 1) % images.length;
   changeViewImage();
 });
-function changeViewImage() {
-  createBackground(images[currentImage]);
-}
 
 document.addEventListener("keydown", function (event) {
   if (event.key === "ArrowRight") {
     currentImage = (currentImage + 1) % images.length;
-    changeViewImage;
+    changeViewImage();
   } else if (event.key === "ArrowLeft") {
     currentImage = (currentImage - 1) % images.length;
-    changeViewImage;
+    changeViewImage();
   }
 });
+function changeViewImage() {
+  createBackground(images[currentImage]);
+}
