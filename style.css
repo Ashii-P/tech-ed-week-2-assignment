@@ -3,34 +3,35 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
 }
 #galleryContainer img {
-  height: 80px;
+  height: 70px;
   padding: 3px;
   cursor: pointer;
   display: flex;
-  /* padding-right: 40px; */
 }
 #galleryContainer {
   position: absolute;
   z-index: 1;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
-  flex-direction: column;
-  width: 12vw;
-  height: 90vh;
-  background-color: rgba(19, 32, 36, 0.5);
-  left: 12vh;
+  flex-direction: row;
+  width: 34%;
+  height: 12vh;
+  background-color: rgba(19, 32, 36, 0.4);
+  left: 60vh;
   top: 5vh;
   padding-left: 5px;
   padding-right: 5px;
   border-radius: 5px;
   overflow: auto;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
   color-scheme: dark;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
 }
 #viewImage img {
   height: 100vh;

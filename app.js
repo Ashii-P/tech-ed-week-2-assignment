@@ -1,5 +1,7 @@
 const galleryContainer = document.getElementById("galleryContainer");
 const viewImage = document.getElementById("viewImage");
+const rightButton = document.createElement("button");
+const leftButton = document.createElement("button");
 
 let images = [
   {
@@ -164,6 +166,7 @@ let images = [
   },
 ];
 
+let currentImage = 0;
 function createGallery() {
   for (const image of images) {
     let imageElement = document.createElement("img");
@@ -177,6 +180,7 @@ function createGallery() {
     imageElement.setAttribute("tabindex", "0");
     galleryContainer.appendChild(imageElement);
   }
+  createBackground(images[currentImage]);
 }
 createGallery();
 
@@ -187,3 +191,52 @@ function createBackground(img) {
   background.alt = img.alt;
   viewImage.appendChild(background);
 }
+
+function createLeftButton() {
+  const leftArrow = document.createTextNode("<");
+  leftButton.appendChild(leftArrow);
+  leftButton.setAttribute(
+    "aria-label",
+    "Click button to go to the previous image."
+  );
+  leftButton.setAttribute("tabindex", "0");
+  leftButton.setAttribute("id", "prev");
+  document.body.appendChild(leftButton);
+}
+createLeftButton();
+
+function createRightButton() {
+  const rightArrow = document.createTextNode(">");
+  rightButton.appendChild(rightArrow);
+  rightButton.setAttribute(
+    "aria-label",
+    "Click button to go to the next image."
+  );
+  rightButton.setAttribute("id", "next");
+  rightButton.setAttribute("tabindex", "0");
+  document.body.appendChild(rightButton);
+}
+createRightButton();
+
+rightButton.addEventListener("click", function () {
+  currentImage = (currentImage + 1) % images.length;
+  changeViewImage();
+});
+
+leftButton.addEventListener("click", function () {
+  currentImage = (currentImage - 1) % images.length;
+  changeViewImage();
+});
+function changeViewImage() {
+  createBackground(images[currentImage]);
+}
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "ArrowRight") {
+    currentImage = (currentImage + 1) % images.length;
+    changeViewImage;
+  } else if (event.key === "ArrowLeft") {
+    currentImage = (currentImage - 1) % images.length;
+    changeViewImage;
+  }
+});
